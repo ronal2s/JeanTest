@@ -1,19 +1,31 @@
-import React from 'react';
-import { StyleSheet, Text, View } from 'react-native';
+import React, { Component } from "react";
+import { StyleSheet, Text, View, Button } from "react-native";
+//import Expo from "expo";
+import * as Speech from "expo-speech";
 
-export default function App() {
-  return (
-    <View style={styles.container}>
-      <Text>Open up App.tsx to start working on your app!</Text>
-    </View>
-  );
+export default class Home extends React.Component {
+  state = {
+    txtSpeak: "Este proyecto será extraordinario.",
+  };
+  onSpeak = () => {
+    Speech.speak(this.state.txtSpeak, { language: "es" });
+  };
+
+  render() {
+    return (
+      <View style={(styles.container, { paddingTop: 200 })}>
+        <Button title="Speech" onPress={this.onSpeak} />
+      </View>
+    );
+  }
 }
 
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: '#fff',
-    alignItems: 'center',
-    justifyContent: 'center',
+    backgroundColor: "green",
+    alignItems: "center",
+    width: 100,
+    height: 100,
   },
 });
